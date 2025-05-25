@@ -1,0 +1,39 @@
+@inherits LayoutComponentBase
+@inject CookieThemeService CookieThemeService
+<RadzenComponents />
+
+<RadzenLayout style="grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body';">
+    <RadzenHeader>
+        <RadzenRow JustifyContent="JustifyContent.Start" style="background-color: #46d444;" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenColumn Size="5">
+                <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
+            </RadzenColumn>
+            <RadzenColumn Size="7">
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.5rem" class="rz-px-2">
+                    <RadzenAppearanceToggle />
+                </RadzenStack>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenHeader>
+    <RadzenBody Expanded="@sidebarExpanded">
+        <RadzenRow class="rz-mx-auto rz-px-4 rz-pt-2 rz-pt-md-4 rz-pt-lg-6 rz-pt-xl-12 rz-pb-2 rz-pb-lg-12" Style="max-width: 1440px;">
+            <RadzenColumn Size="12">
+            @Body
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenBody>
+    <RadzenSidebar @bind-Expanded="@sidebarExpanded" style="z-index: 2">
+        <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border);">
+            <RadzenImage Path="images/calculus.png"  style="width: 100px; height: 100px;" AlternateText="Application logo"></RadzenImage>
+        </RadzenStack>
+        <RadzenPanelMenu Style="color: #46d444;">
+            <RadzenPanelMenuItem Text="Assets" Path="" />
+            <RadzenPanelMenuItem Text="Gateways" Path="gateways" />
+            <RadzenPanelMenuItem Text="Companies" Path="companies" />
+            <RadzenPanelMenuItem Text="Asset Types" Path="asset-types" />
+            <RadzenPanelMenuItem Text="Gateway Types" Path="gateway-types" />
+            <RadzenPanelMenuItem Text="Statistics" Path="statistics" />
+            <RadzenPanelMenuItem Text="Health Dashboard" Path="health-dashboard" />
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+</RadzenLayout>

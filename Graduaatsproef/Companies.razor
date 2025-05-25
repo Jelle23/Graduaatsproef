@@ -1,0 +1,42 @@
+@page "/companies"
+@using Radzen
+@using Radzen.Blazor
+@inject CompanyService companyService
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Companies
+</h1>
+
+@if (companies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenDataGrid Data="@companies" TItem="Company"
+                    AllowPaging="true" PageSize="5"
+                    RowSelect="OnRowSelect"
+                    Style="cursor: pointer;"
+                    AllowSorting="true">
+        <Columns>
+            <RadzenDataGridColumn TItem="Company" Property="Id" Title="ID" Width="80px" />
+            <RadzenDataGridColumn TItem="Company" Property="Naam" Title="Naam" />
+            <RadzenDataGridColumn TItem="Company" Property="AantalSubcompanies" Title="Aantal Subcompanies" />
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    private List<Company> companies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch companies from the injected service
+        companies = await companyService.GetCompaniesAsync();
+    }
+
+    void OnRowSelect(Company company)
+    {
+        NavigationManager.NavigateTo($"/companies/{company.Id}");
+    }
+}

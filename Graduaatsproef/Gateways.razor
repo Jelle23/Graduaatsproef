@@ -1,0 +1,136 @@
+@page "/gateways"
+@using Radzen
+@using Radzen.Blazor
+@inject GatewaysService GatewaysService
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Gateways
+</h1>
+
+<RadzenTabs>
+    <Tabs>
+        <!-- Tab 1: Google Map -->
+        <RadzenTabsItem Text="Map" Style="color: #46d444">
+            <RadzenGoogleMap Latitude="37.7749" Longitude="-122.4194" Zoom="10" Style="height:400px;" />
+        </RadzenTabsItem>
+
+        <!-- Tab 2: Gateway List -->
+        <RadzenTabsItem Text="List" Style="color: #46d444">
+            <div class="mb-3">
+                <!-- Search bar -->
+                <RadzenTextBox @bind-Value="searchText"
+                               Name="searchBox"
+                               Placeholder="Search by name, company, kind..."
+                               Style="width: 250px; margin-right: 20px;"
+                               Change="@(args => ApplyFilters())" />
+
+                <!-- Active filter -->
+                <RadzenCheckBox @bind-Value="showActiveOnly"
+                                Change="@( (bool value) => OnActiveChanged(value) )"
+                                Style="margin-right:5px" />
+                <label>Show active gateways</label>
+
+                <!-- Gateway kind filter -->
+                <RadzenDropDown @bind-Value="selectedGatewayKind"
+                                Data="@gatewayKinds"
+                                Placeholder="Filter by gateway kind"
+                                Style="width: 250px; margin-right: 20px;"
+                                Change="@(args => ApplyFilters())"
+                                AllowClear="true" />
+            </div>
+
+            <!-- DataGrid -->
+            <RadzenDataGrid @ref="grid" Data="@filteredGateways" TItem="GatewaysService.Gateway"
+                            Editable="true" EditMode="DataGridEditMode.Single"
+                            AllowPaging="true" PageSize="5" AllowFiltering="false" AllowSorting="true">
+                <Columns>
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="Id" Title="ID" Width="50px" />
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="Name" Title="Name">
+                        <EditTemplate Context="gateway">
+                            <RadzenTextBox @bind-Value="gateway.Name" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="Serienummer" Title="Serienummer">
+                        <EditTemplate Context="gateway">
+                            <RadzenNumeric @bind-Value="gateway.Serienummer" TValue="int" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="GatewayKind" Title="Gateway Kind">
+                        <EditTemplate Context="gateway">
+                            <RadzenTextBox @bind-Value="gateway.GatewayKind" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="OwnerCompany" Title="Owner Company">
+                        <EditTemplate Context="gateway">
+                            <RadzenTextBox @bind-Value="gateway.OwnerCompany" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="GatewayType" Title="Gateway Type">
+                        <EditTemplate Context="gateway">
+                            <RadzenTextBox @bind-Value="gateway.GatewayType" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="TunnelConnection" Title="Tunnel Connection">
+                        <EditTemplate Context="gateway">
+                            <RadzenTextBox @bind-Value="gateway.TunnelConnection" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="GatewaysService.Gateway" Property="IsActive" Title="Status">
+                        <EditTemplate Context="gateway">
+                            <RadzenCheckBox @bind-Value="gateway.IsActive" Style="margin-top: 10px;" />
+                        </EditTemplate>
+                        <Template Context="gateway">
+                            @(gateway.IsActive ? "Active" : "Inactive")
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        </RadzenTabsItem>
+    </Tabs>
+</RadzenTabs>
+
+@code {
+    private RadzenDataGrid<GatewaysService.Gateway> grid;
+    private List<GatewaysService.Gateway> allGateways = new();
+    private List<GatewaysService.Gateway> filteredGateways = new();
+    private string searchText = string.Empty;
+    private bool showActiveOnly = false;
+    private string? selectedGatewayKind;
+    private List<string> gatewayKinds = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        allGateways = await GatewaysService.GetGatewaysAsync();
+        gatewayKinds = allGateways.Select(g => g.GatewayKind).Distinct().ToList();
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        filteredGateways = allGateways
+            .Where(g =>
+                (string.IsNullOrWhiteSpace(searchText) ||
+                 g.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 g.OwnerCompany.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 g.GatewayKind.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 g.GatewayType.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 g.TunnelConnection.Contains(searchText, StringComparison.OrdinalIgnoreCase)) &&
+                (!showActiveOnly || g.IsActive) &&
+                (string.IsNullOrEmpty(selectedGatewayKind) || g.GatewayKind == selectedGatewayKind)
+            )
+            .ToList();
+    }
+
+    private void OnActiveChanged(bool value)
+    {
+        showActiveOnly = value;
+        ApplyFilters();
+    }
+}

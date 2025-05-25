@@ -1,0 +1,81 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Graduaatsproef
+build_property.RootNamespace = Graduaatsproef
+build_property.ProjectDir = C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Assets.razor]
+build_metadata.AdditionalFiles.TargetPath = QXNzZXRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/AssetTypes.razor]
+build_metadata.AdditionalFiles.TargetPath = QXNzZXRUeXBlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/AssetTypesDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = QXNzZXRUeXBlc0RldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Companies.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcGFuaWVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Components/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Gateways.razor]
+build_metadata.AdditionalFiles.TargetPath = R2F0ZXdheXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/GatewayTypes.razor]
+build_metadata.AdditionalFiles.TargetPath = R2F0ZXdheVR5cGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/GatewayTypesDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = R2F0ZXdheVR5cGVzRGV0YWlsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/HealthDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = SGVhbHRoRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/Statistics.razor]
+build_metadata.AdditionalFiles.TargetPath = U3RhdGlzdGljcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/vdbje/OneDrive/Documenten/School/Jelle Vandebroek/Blazor/Graduaatsproef/Graduaatsproef/SubCompanies.razor]
+build_metadata.AdditionalFiles.TargetPath = U3ViQ29tcGFuaWVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 

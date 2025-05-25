@@ -1,0 +1,52 @@
+@page "/gateway-types/{Id:int}"
+@inject GatewayTypeService GatewayTypeService
+@using Radzen
+@using Radzen.Blazor
+
+@if (gatewayType == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+     <RadzenRow Style="color: #46d444;">
+        <RadzenColumn Size="2">
+            <h3>ID: @gatewayType.Id</h3>
+        </RadzenColumn>
+        <RadzenColumn Size="4">
+            <h3>Gateway Type: @gatewayType.Naam</h3>
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenDataGrid Data="@gateways" TItem="Gateway" AllowPaging="true" PageSize="5">
+        <Columns>
+            <RadzenDataGridColumn TItem="Gateway" Property="Id" Title="ID" Width="60px" />
+            <RadzenDataGridColumn TItem="Gateway" Property="Name" Title="Name" />
+            <RadzenDataGridColumn TItem="Gateway" Property="OwnerCompany" Title="Owner Company" />
+            <RadzenDataGridColumn TItem="Gateway" Title="Online">
+                <Template Context="gateway">
+                    @(gateway.IsOnline ? "Online" : "Offline")
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Gateway" Title="Status">
+                <Template Context="gateway">
+                    @(gateway.IsActive ? "Active" : "Inactive")
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private GatewayType? gatewayType;
+    private List<Gateway> gateways = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        gatewayType = await GatewayTypeService.GetGatewayTypeByIdAsync(Id);
+        gateways = await GatewayTypeService.GetGatewaysByTypeAsync(Id);
+    }
+}

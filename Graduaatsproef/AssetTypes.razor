@@ -1,0 +1,43 @@
+@page "/asset-types"
+@inject AssetTypeService AssetTypeService
+@using Radzen
+@using Radzen.Blazor
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Asset Types
+</h1>
+
+@if (assetTypes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenDataGrid Data="@assetTypes"
+                    TItem="AssetType"
+                    AllowPaging="true" PageSize="5"
+                    AllowSorting="true"
+                    Style="cursor: pointer;"
+                    RowSelect="OnRowSelect">
+
+        <Columns>
+            <RadzenDataGridColumn TItem="AssetType" Property="Id" Title="ID" Width="100px" />
+            <RadzenDataGridColumn TItem="AssetType" Property="Naam" Title="Naam" />
+            <RadzenDataGridColumn TItem="AssetType" Property="AantalAssets" Title="Aantal assets" />
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    private List<AssetType>? assetTypes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        assetTypes = await AssetTypeService.GetAssetTypesAsync();
+    }
+
+    private void OnRowSelect(AssetType type)
+    {
+        NavigationManager.NavigateTo($"/asset-types/{type.Id}");
+    }
+}

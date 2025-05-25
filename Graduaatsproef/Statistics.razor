@@ -1,0 +1,30 @@
+@page "/statistics"
+@using Radzen
+@using Radzen.Blazor
+@inject StatisticsService StatisticsService
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Statistics
+</h1>
+
+<RadzenRow>
+    @foreach (var stat in statistics)
+    {
+            <RadzenColumn Size="3" class="mb-4">
+                <div class="card shadow-sm p-3 text-center">
+                    <h5 style="font-size: 18px; margin: 10px 20px; height: 50px;">@stat.Title</h5>
+                    <hr />
+                    <h2 style="font-size: 36px; margin: 15px 35px;">@stat.Value</h2>
+                </div>
+            </RadzenColumn>
+    }
+</RadzenRow>
+
+@code {
+    private List<StatisticsService.Statistic> statistics = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        statistics = await StatisticsService.GetStatisticsAsync();
+    }
+}

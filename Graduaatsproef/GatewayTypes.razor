@@ -1,0 +1,43 @@
+@page "/gateway-types"
+@inject GatewayTypeService GatewayTypeService
+@using Radzen
+@using Radzen.Blazor
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Gateway Types
+</h1>
+
+@if (gatewayTypes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenDataGrid Data="@gatewayTypes"
+                    TItem="GatewayType"
+                    AllowPaging="true" PageSize="5"
+                    AllowSorting="true"
+                    Style="cursor: pointer;"
+                    RowSelect="OnRowSelect">
+
+        <Columns>
+            <RadzenDataGridColumn TItem="GatewayType" Property="Id" Title="ID" Width="50px" />
+            <RadzenDataGridColumn TItem="GatewayType" Property="Naam" Title="Naam" />
+            <RadzenDataGridColumn TItem="GatewayType" Property="AantalGateways" Title="Aantal gateways" />
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    private List<GatewayType>? gatewayTypes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        gatewayTypes = await GatewayTypeService.GetGatewayTypesAsync();
+    }
+
+    private void OnRowSelect(GatewayType selected)
+    {
+        NavigationManager.NavigateTo($"/gateway-types/{selected.Id}");
+    }
+}

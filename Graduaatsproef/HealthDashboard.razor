@@ -1,0 +1,40 @@
+@page "/health-dashboard"
+@using Radzen
+@using Radzen.Blazor
+@inject HealthDashboardService HealthDashboardService
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Health Dashboard
+</h1>
+
+<RadzenDataGrid Data="@services" TItem="HealthDashboardService.HealthDashboard"
+                AllowPaging="false" AllowFiltering="false" AllowSorting="false">
+    <Columns>
+        <RadzenDataGridColumn TItem="HealthDashboardService.HealthDashboard" Property="Service" Title="Service" />
+        <RadzenDataGridColumn TItem="HealthDashboardService.HealthDashboard" Property="Status" Title="Status">
+            <Template Context="data">
+                <span style="color:@GetStatusColor(data.Status); font-weight:bold">
+                    @data.Status
+                </span>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="HealthDashboardService.HealthDashboard" Property="Details" Title="Details" />
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    private List<HealthDashboardService.HealthDashboard> services = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        services = await HealthDashboardService.GetHealthDashboardsAsync();
+    }
+
+    private string GetStatusColor(string status) => status switch
+    {
+        "OK" => "green",
+        "Warning" => "orange",
+        "Error" => "red",
+        _ => "gray"
+    };
+}

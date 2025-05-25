@@ -1,0 +1,142 @@
+﻿@page "/"
+@using Radzen
+@using Radzen.Blazor
+@inject AssetsService AssetsService
+
+<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+    Assets
+</h1>
+
+<RadzenTabs>
+    <Tabs>
+        <!-- Tab 1: Google Map -->
+        <RadzenTabsItem Text="Map" Style="color: #46d444">
+            <RadzenGoogleMap Zoom="12"
+                             SimpleMarkers="true"
+                             Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
+                             Style="height:400px; width: 100%;">
+                <Markers>
+                    @foreach (var asset in filteredAssets)
+                    {
+                        <RadzenGoogleMapMarker Title=@asset.Name
+                                               Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
+                    }
+                </Markers>
+
+            </RadzenGoogleMap>
+        </RadzenTabsItem>
+
+        <!-- Tab 2: Asset List -->
+        <RadzenTabsItem Text="List" Style="color: #46d444">
+            <div class="mb-3">
+                <!-- Search bar -->
+                <RadzenTextBox @bind-Value="searchText"
+                               Name="searchBox"
+                               Placeholder="Search by name..."
+                               Style="width: 250px; margin-right: 20px;"
+                               Change="@(args => ApplyFilters())" />
+
+                <!-- Online filter -->
+                <RadzenCheckBox @bind-Value="showOnlineOnly"
+                                Change="@( (bool value) => OnOnlineChanged(value) )"
+                                Style="margin-right:5px" />
+                <label style="margin-right:20px">Show online assets</label>
+
+                <!-- Active filter -->
+                <RadzenCheckBox @bind-Value="showActiveOnly"
+                                Change="@( (bool value) => OnActiveChanged(value) )"
+                                Style="margin-right:5px" />
+                <label>Show active assets</label>
+            </div>
+
+            <!-- DataGrid -->
+            <RadzenDataGrid @ref="grid" Data="@filteredAssets" TItem="AssetsService.Asset"
+                            Editable="true" EditMode="DataGridEditMode.Single"
+                            AllowPaging="true" PageSize="5" AllowFiltering="false" AllowSorting="true">
+                <Columns>
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="Id" Title="ID" Width="50px" />
+
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="Name" Title="Name">
+                        <EditTemplate Context="asset">
+                            <RadzenTextBox @bind-Value="asset.Name" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="OwnerCompany" Title="Owner Company">
+                        <EditTemplate Context="asset">
+                            <RadzenTextBox @bind-Value="asset.OwnerCompany" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="AssetType" Title="Asset Type">
+                        <EditTemplate Context="asset">
+                            <RadzenTextBox @bind-Value="asset.AssetType" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="IsOnline" Title="Online">
+                        <EditTemplate Context="asset">
+                            <RadzenCheckBox @bind-Value="asset.IsOnline" Style="margin-top: 10px;" />
+                        </EditTemplate>
+                        <Template Context="asset">
+                            @(asset.IsOnline ? "Online" : "Offline")
+                        </Template>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="IsActive" Title="Status">
+                        <EditTemplate Context="asset">
+                            <RadzenCheckBox @bind-Value="asset.IsActive" Style="margin-top: 10px;" />
+                        </EditTemplate>
+                        <Template Context="asset">
+                            @(asset.IsActive ? "Active" : "Inactive")
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        </RadzenTabsItem>
+    </Tabs>
+</RadzenTabs>
+
+@code {
+    private RadzenDataGrid<AssetsService.Asset> grid;
+    private List<AssetsService.Asset> allAssets = new();
+    private List<AssetsService.Asset> filteredAssets = new();
+    private string searchText = string.Empty;
+    private bool showOnlineOnly = false;
+    private bool showActiveOnly = false;
+
+    private double mapCenterLatitude = 50.8465573;
+    private double mapCenterLongitude = 4.351697;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allAssets = await AssetsService.GetAssetsAsync();
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        filteredAssets = allAssets
+            .Where(a =>
+                (string.IsNullOrWhiteSpace(searchText) ||
+                 a.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 a.OwnerCompany.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                 a.AssetType.Contains(searchText, StringComparison.OrdinalIgnoreCase)) &&
+                (!showOnlineOnly || a.IsOnline) &&
+                (!showActiveOnly || a.IsActive)
+            )
+            .ToList();
+    }
+
+    private void OnOnlineChanged(bool value)
+    {
+        showOnlineOnly = value;
+        ApplyFilters();
+    }
+
+    private void OnActiveChanged(bool value)
+    {
+        showActiveOnly = value;
+        ApplyFilters();
+    }
+}

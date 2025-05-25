@@ -1,0 +1,51 @@
+@page "/asset-types/{Id:int}"
+@inject AssetTypeService AssetTypeService
+@using Radzen
+@using Radzen.Blazor
+
+@if (assetType == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenRow Style="color: #46d444;">
+        <RadzenColumn Size="2">
+            <h3>ID: @assetType.Id</h3>
+        </RadzenColumn>
+        <RadzenColumn Size="4">
+            <h3>Asset Type: @assetType.Naam</h3>
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenDataGrid Data="@assets" TItem="Asset" AllowPaging="true" PageSize="5">
+        <Columns>
+            <RadzenDataGridColumn TItem="Asset" Property="Id" Title="ID" Width="80px" />
+            <RadzenDataGridColumn TItem="Asset" Property="Name" Title="Name" />
+            <RadzenDataGridColumn TItem="Asset" Property="OwnerCompany" Title="Owner Company" />
+            <RadzenDataGridColumn TItem="Asset" Title="Online/Offline">
+                <Template Context="asset">
+                    @(asset.IsOnline ? "Online" : "Offline")
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Asset" Title="Status">
+                <Template Context="asset">
+                    @(asset.IsActive ? "Active" : "Inactive")
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private AssetType? assetType;
+    private List<Asset> assets = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        assetType = await AssetTypeService.GetAssetTypeByIdAsync(Id);
+        assets = await AssetTypeService.GetAssetsByTypeAsync(Id);
+    }
+}

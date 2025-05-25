@@ -1,0 +1,5 @@
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\wwwroot\favicon.ico
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\wwwroot\css\site.css
+wwwroot\css\site.css
+wwwroot\favicon.ico
+wwwroot\images\calculus.png
