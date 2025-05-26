@@ -18,11 +18,9 @@
                 <Markers>
                     @foreach (var asset in filteredAssets)
                     {
-                        <RadzenGoogleMapMarker Title=@asset.Name
-                                               Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
+                        <RadzenGoogleMapMarker Title=@asset.Name Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
                     }
                 </Markers>
-
             </RadzenGoogleMap>
         </RadzenTabsItem>
 

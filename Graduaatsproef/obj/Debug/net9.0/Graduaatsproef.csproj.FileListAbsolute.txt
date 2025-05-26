@@ -76,3 +76,4 @@ C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef
 C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\obj\Debug\net9.0\ref\Graduaatsproef.dll
 C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\obj\Debug\net9.0\compressed\tk6n5vobqq-wfjh0kr7r9.gz
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Graduaatsproef\obj\Debug\net9.0\Graduaatsproef.sourcelink.json

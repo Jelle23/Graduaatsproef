@@ -11,7 +11,17 @@
     <Tabs>
         <!-- Tab 1: Google Map -->
         <RadzenTabsItem Text="Map" Style="color: #46d444">
-            <RadzenGoogleMap Latitude="37.7749" Longitude="-122.4194" Zoom="10" Style="height:400px;" />
+            <RadzenGoogleMap Zoom="12"
+                             SimpleMarkers="true"
+                             Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
+                             Style="height:400px; width: 100%;">
+                <Markers>
+                    @foreach (var asset in filteredGateways)
+                    {
+                            <RadzenGoogleMapMarker Title=@asset.Name Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
+                    }
+                </Markers>
+            </RadzenGoogleMap>
         </RadzenTabsItem>
 
         <!-- Tab 2: Gateway List -->
@@ -104,6 +114,9 @@
     private bool showActiveOnly = false;
     private string? selectedGatewayKind;
     private List<string> gatewayKinds = new();
+
+    private double mapCenterLatitude = 50.8465573;
+    private double mapCenterLongitude = 4.351697;
 
     protected override async Task OnInitializedAsync()
     {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Graduaatsproef")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe8877f8a57c0b6eb3e72f1f3447a6e5e40eb241")]
 [assembly: System.Reflection.AssemblyProductAttribute("Graduaatsproef")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Graduaatsproef")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
