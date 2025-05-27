@@ -1,59 +1,35 @@
-using Radzen;
-using Graduaatsproef.Components;
-using Graduaatsproef;
+using Microsoft.ServiceFabric.Services.Runtime;
+using System.Diagnostics;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorComponents()
-      .AddInteractiveServerComponents().AddHubOptions(options => options.MaximumReceiveMessageSize = 10 * 1024 * 1024);
-
-builder.Services.AddControllers();
-builder.Services.AddRadzenComponents();
-builder.Services.AddScoped<DialogService>();
-
-builder.Services.AddScoped<AssetsService>();
-builder.Services.AddScoped<AssetTypeService>();
-builder.Services.AddScoped<CompanyService>();
-builder.Services.AddScoped<GatewaysService>();
-builder.Services.AddScoped<GatewayTypeService>();
-builder.Services.AddScoped<HealthDashboardService>();
-builder.Services.AddScoped<StatisticsService>();
-
-
-builder.Services.AddRadzenCookieThemeService(options =>
+namespace Graduaatsproef
 {
-    options.Name = "GraduaatsproefTheme";
-    options.Duration = TimeSpan.FromDays(365);
-});
-builder.Services.AddHttpClient();
-var app = builder.Build();
+    internal static class Program
+    {
+        /// <summary>
+        /// This is the entry point of the service host process.
+        /// </summary>
+        private static void Main()
+        {
+            try
+            {
+                // The ServiceManifest.XML file defines one or more service type names.
+                // Registering a service maps a service type name to a .NET type.
+                // When Service Fabric creates an instance of this service type,
+                // an instance of the class is created in this host process.
 
+                ServiceRuntime.RegisterServiceAsync("PanopticonType",
+                    context => new Panopticon(context)).GetAwaiter().GetResult();
 
-var forwardingOptions = new ForwardedHeadersOptions()
-{
-    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-};
-forwardingOptions.KnownNetworks.Clear();
-forwardingOptions.KnownProxies.Clear();
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Panopticon).Name);
 
-app.UseForwardedHeaders(forwardingOptions);
-    
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+                // Prevents this host process from terminating so services keeps running. 
+                Thread.Sleep(Timeout.Infinite);
+            }
+            catch (Exception e)
+            {
+                ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
+                throw;
+            }
+        }
+    }
 }
-
-app.UseHttpsRedirection();
-app.MapControllers();
-app.UseStaticFiles();
-app.UseAntiforgery();
-
-app.MapRazorComponents<App>()
-   .AddInteractiveServerRenderMode();
-
-app.Run();
