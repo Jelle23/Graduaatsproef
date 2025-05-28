@@ -11,7 +11,13 @@ public class CompanyService
         new Company { Id = 3, Naam = "Globex", AantalSubcompanies = 0 },
         new Company { Id = 4, Naam = "VDB Service", AantalSubcompanies = 0 },
         new Company { Id = 5, Naam = "Dutry Power", AantalSubcompanies = 0 },
-        new Company { Id = 6, Naam = "Koninklijke Van Twist", AantalSubcompanies = 0 }
+        new Company { Id = 6, Naam = "Koninklijke Van Twist", AantalSubcompanies = 0 },
+        new Company { Id = 7, Naam = "Jelle Inc", AantalSubcompanies = 0 },
+        new Company { Id = 8, Naam = "Jelle Inc", AantalSubcompanies = 0 },
+        new Company { Id = 9, Naam = "Jelle Inc", AantalSubcompanies = 0 },
+        new Company { Id = 10, Naam = "Jelle Inc", AantalSubcompanies = 0 },
+        new Company { Id = 11, Naam = "Jelle Inc", AantalSubcompanies = 0 },
+        new Company { Id = 12, Naam = "Jelle Inc", AantalSubcompanies = 0 },
     };
 
     private Dictionary<int, List<Subcompany>> subcompanyData = new()
