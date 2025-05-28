@@ -6,6 +6,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graduaatsproef", "Graduaats
 EndProject
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "Eywa.Fabric.Panopticon", "Eywa.Fabric.Panopticon\Eywa.Fabric.Panopticon.sfproj", "{8F3C97D3-2BC5-4CE9-910B-105893AC2E14}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{D1F9639F-F758-46C3-9E0E-32D61A44C8A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eywa.HealthMonitor.Contracts", "..\Calculus cloud\Eywa.HealthMonitor.Contracts\Eywa.HealthMonitor.Contracts.csproj", "{33D9A99D-7E04-45BF-B463-1AF797D05BC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,9 +38,20 @@ Global
 		{8F3C97D3-2BC5-4CE9-910B-105893AC2E14}.Release|x64.ActiveCfg = Release|x64
 		{8F3C97D3-2BC5-4CE9-910B-105893AC2E14}.Release|x64.Build.0 = Release|x64
 		{8F3C97D3-2BC5-4CE9-910B-105893AC2E14}.Release|x64.Deploy.0 = Release|x64
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Debug|x64.Build.0 = Debug|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Release|x64.ActiveCfg = Release|Any CPU
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33D9A99D-7E04-45BF-B463-1AF797D05BC7} = {D1F9639F-F758-46C3-9E0E-32D61A44C8A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD782635-A040-4B9A-A78A-18642206658A}

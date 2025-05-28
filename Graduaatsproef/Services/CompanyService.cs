@@ -1,72 +1,94 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Eywa.HealthMonitor.Contracts.Dtos;
+using Eywa.HealthMonitor.Contracts.Helpers;
 
 public class CompanyService
 {
-    private List<Company> companies = new()
+    private List<CompanyDto> companies = new()
     {
-        new Company { Id = 1, Naam = "Contoso", AantalSubcompanies = 2 },
-        new Company { Id = 2, Naam = "Fabrikam", AantalSubcompanies = 1 },
-        new Company { Id = 3, Naam = "Globex", AantalSubcompanies = 0 },
-        new Company { Id = 4, Naam = "VDB Service", AantalSubcompanies = 0 },
-        new Company { Id = 5, Naam = "Dutry Power", AantalSubcompanies = 0 },
-        new Company { Id = 6, Naam = "Koninklijke Van Twist", AantalSubcompanies = 0 }
+        new CompanyDto { ID = 1, Name = "Contoso", NumberOfSubCompanies = 2 },
+        new CompanyDto { ID = 2, Name = "Fabrikam", NumberOfSubCompanies = 1 },
+        new CompanyDto { ID = 3, Name = "Globex", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" },
+        new CompanyDto { ID = 4, Name = "VDB Service", NumberOfSubCompanies = 0, ParentCompanyID = 2, ParentCompanyName = "Fabrikam" },
+        new CompanyDto { ID = 5, Name = "Dutry Power", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" },
+        new CompanyDto { ID = 6, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 }
     };
 
-    private Dictionary<int, List<Subcompany>> subcompanyData = new()
+    private Dictionary<int, List<CompanyDto>> subcompanyData = new()
     {
         [1] = new()
         {
-            new Subcompany { Id = 101, Name = "Contoso Sub A", ParentCompany = "Contoso" },
-            new Subcompany { Id = 102, Name = "Contoso Sub B", ParentCompany = "Contoso" }
+            new CompanyDto { ID = 101, Name = "Contoso Sub A", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" },
+            new CompanyDto { ID = 102, Name = "Contoso Sub B", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" }
         },
         [2] = new()
         {
-            new Subcompany { Id = 201, Name = "Fabrikam Sub A", ParentCompany = "Fabrikam" }
+            new CompanyDto { ID = 201, Name = "Fabrikam Sub A", NumberOfSubCompanies = 0, ParentCompanyID = 2, ParentCompanyName = "Fabrikam" }
         }
     };
 
-    private Dictionary<int, List<Project>> projectData = new()
+    private Dictionary<int, List<ProjectDto>> projectData = new()
     {
         [1] = new()
         {
-            new Project { Id = 1, Name = "Smart City", DateRange = "Jan - Jun 2024", IsActive = true },
-            new Project { Id = 2, Name = "Green Power", DateRange = "Feb - Dec 2024", IsActive = false }
+            new ProjectDto { ID = 1, Name = "Smart City", MinDate = new DateTimeOffset(2024, 01, 01, 0, 0, 0, TimeSpan.Zero), MaxDate = new DateTimeOffset(2024, 06, 01, 0, 0, 0, TimeSpan.Zero), IsActive = false },
+            new ProjectDto { ID = 2, Name = "Green Power", MinDate = new DateTimeOffset(2024, 02, 15, 0, 0, 0, TimeSpan.Zero), MaxDate = new DateTimeOffset(2024, 12, 10, 0, 0, 0, TimeSpan.Zero), IsActive = false }
         },
         [2] = new()
         {
-            new Project { Id = 3, Name = "AI Integration", DateRange = "Mar - Sep 2024", IsActive = true }
+            new ProjectDto { ID = 3, Name = "AI Integration", MinDate = new DateTimeOffset(2025, 03, 20, 0, 0, 0, TimeSpan.Zero), MaxDate = new DateTimeOffset(2025, 09, 05, 0, 0, 0, TimeSpan.Zero), IsActive = true }
         }
     };
 
     // Async retrieval of all companies
-    public Task<List<Company>> GetCompaniesAsync()
+    public async Task<List<CompanyDto>> GetCompaniesAsync(CancellationToken cancellationToken)
     {
-        return Task.FromResult(companies);
+        try
+        {
+            var result = await HealthMonitorHelper.HealthMonitorServiceProxy.GetCompaniesAsync(cancellationToken);
+            companies = result.Companies;
+        }
+        catch { /* use default companies */ }
+
+        return companies;
     }
 
     // Async retrieval of a single company by ID
-    public Task<Company?> GetCompanyByIdAsync(int id)
+    public Task<CompanyDto?> GetCompanyByIdAsync(int id)
     {
-        var company = companies.FirstOrDefault(c => c.Id == id);
+        var company = companies.FirstOrDefault(c => c.ID == id);
         return Task.FromResult(company);
     }
 
     // Async retrieval of subcompanies by company ID
-    public Task<List<Subcompany>> GetSubcompaniesForCompanyAsync(int companyId)
+    public async Task<List<CompanyDto>> GetSubcompaniesForCompanyAsync(int companyId, CancellationToken cancellationToken)
     {
-        if (subcompanyData.TryGetValue(companyId, out var list))
-            return Task.FromResult(list);
-        return Task.FromResult(new List<Subcompany>());
+        try
+        {
+            var result = await HealthMonitorHelper.HealthMonitorServiceProxy.GetSubCompaniesAsync(companyId, cancellationToken);
+            return result.SubCompanies;
+        }
+        catch
+        {
+            if (subcompanyData.TryGetValue(companyId, out var list))
+                return list;
+            return new List<CompanyDto>();
+        }
     }
 
     // Async retrieval of projects by company ID
-    public Task<List<Project>> GetProjectsForCompanyAsync(int companyId)
+    public async Task<List<ProjectDto>> GetProjectsForCompanyAsync(int companyId, CancellationToken cancellationToken)
     {
-        if (projectData.TryGetValue(companyId, out var list))
-            return Task.FromResult(list);
-        return Task.FromResult(new List<Project>());
+        try
+        {
+            var result = await HealthMonitorHelper.HealthMonitorServiceProxy.GetCompanyProjectsAsync(companyId, cancellationToken);
+            return result.Projects;
+        }
+        catch
+        {
+            if (projectData.TryGetValue(companyId, out var list))
+                return list;
+            return new List<ProjectDto>();
+        }
     }
 }
 
