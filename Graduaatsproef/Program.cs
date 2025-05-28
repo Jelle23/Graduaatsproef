@@ -5,13 +5,31 @@ namespace Graduaatsproef
 {
     internal static class Program
     {
+#if DEBUGNOFABRIC
+        private static readonly bool _runInServiceFabric = false;
+#else
+        private static readonly bool _runInServiceFabric = true;
+#endif
+
         /// <summary>
         /// This is the entry point of the service host process.
         /// </summary>
         private static void Main()
         {
+            if (!_runInServiceFabric)
+            {
+                // In debug mode, run the service as a console application.
+                // This is useful for local testing without Service Fabric.
+                var builder = WebApplication.CreateBuilder();
+                var host = Panopticon.BuildApp(builder);
+                host.Run();
+
+                return;
+            }
+
             try
             {
+
                 // The ServiceManifest.XML file defines one or more service type names.
                 // Registering a service maps a service type name to a .NET type.
                 // When Service Fabric creates an instance of this service type,
