@@ -7,7 +7,7 @@ public class AssetsService
     private List<Asset> assets = new()
 {
     new Asset { Id = 1, Name = "Sensor A", OwnerCompany = "Contoso", AssetType = "Temperature Sensor", IsOnline = true, IsActive = true, Latitude=50.8465573, Longitude=4.351697 },
-    new Asset { Id = 2, Name = "Camera X", OwnerCompany = "Fabrikam", AssetType = "Security Camera", IsOnline = false, IsActive = true, Latitude=50.8465573, Longitude=4.351697},
+    new Asset { Id = 2, Name = "Camera X", OwnerCompany = "Fabrikam", AssetType = "Security Camera", IsOnline = false, IsActive = true, Latitude=50.9226832, Longitude=5.5392831},
     new Asset { Id = 3, Name = "Hub B", OwnerCompany = "Contoso", AssetType = "Network Hub", IsOnline = true, IsActive = false, Latitude=50.8465573, Longitude=4.351697 },
     new Asset { Id = 4, Name = "Light Z", OwnerCompany = "Globex", AssetType = "Smart Light", IsOnline = false, IsActive = false, Latitude=50.8465573, Longitude=4.351697 }
 };

@@ -13,7 +13,7 @@
         <!-- Tab 1: Google Map -->
         <RadzenTabsItem Text="Map" Style="color: #46d444">
             <RadzenGoogleMap Zoom="12"
-                             SimpleMarkers="true"
+                             MapId="15b04a333dd20cd2"
                              Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
                              Style="height:400px; width: 100%;">
                 <Markers>
@@ -53,7 +53,7 @@
             <!-- DataGrid -->
             <RadzenDataGrid @ref="grid" Data="@filteredGateways" TItem="GatewayDto"
                             Editable="true" EditMode="DataGridEditMode.Single"
-                            AllowPaging="true" PageSize="5" AllowFiltering="false" AllowSorting="true">
+                            AllowPaging="true" PageSize="8" AllowFiltering="false" AllowSorting="true">
                 <Columns>
                     <RadzenDataGridColumn TItem="GatewayDto" Property="ID" Title="ID" Width="50px" />
 
@@ -119,8 +119,8 @@
     private string? selectedGatewayKind;
     private List<string> gatewayKinds = new();
 
-    private double mapCenterLatitude = 50.8465573;
-    private double mapCenterLongitude = 4.351697;
+    private double mapCenterLatitude = 50.9226832;
+    private double mapCenterLongitude = 5.5392831;
 
     protected override async Task OnInitializedAsync()
     {
