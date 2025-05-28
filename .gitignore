@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Graduaatsproef/obj
+/Graduaatsproef/bin
+/Eywa.Fabric.Panopticon/pkg
+/packages

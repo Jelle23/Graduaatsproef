@@ -1,4 +1,5 @@
 @page "/companies/{Id:int}"
+@using Eywa.HealthMonitor.Contracts.Dtos
 @using Radzen
 @using Radzen.Blazor
 @inject CompanyService CompanyService
@@ -11,10 +12,10 @@ else
 {
 <RadzenRow Style="color: #46d444;">
     <RadzenColumn Size="1">
-        <h3>ID: @selectedCompany.Id</h3>
+        <h3>ID: @selectedCompany.ID</h3>
     </RadzenColumn>
     <RadzenColumn Size="4">
-        <h3>Company name: @selectedCompany.Naam</h3>
+        <h3>Company name: @selectedCompany.Name</h3>
     </RadzenColumn>
 </RadzenRow>
 
@@ -23,24 +24,25 @@ else
     <RadzenTabs>
         <Tabs>
         <RadzenTabsItem Text="Subcompanies" Style="color: #46d444">
-            <RadzenDataGrid Data="@subcompanies" TItem="Subcompany"
+            <RadzenDataGrid Data="@subcompanies" TItem="CompanyDto"
                             AllowPaging="true" PageSize="5">
                 <Columns>
-                    <RadzenDataGridColumn TItem="Subcompany" Property="Id" Title="ID" Width="80px" />
-                    <RadzenDataGridColumn TItem="Subcompany" Property="Name" Title="Name" />
-                    <RadzenDataGridColumn TItem="Subcompany" Property="ParentCompany" Title="Parent Company" />
+                    <RadzenDataGridColumn TItem="CompanyDto" Property="ID" Title="ID" Width="80px" />
+                    <RadzenDataGridColumn TItem="CompanyDto" Property="Name" Title="Name" />
+                    <RadzenDataGridColumn TItem="CompanyDto" Property="ParentCompanyName" Title="Parent Company" />
                 </Columns>
             </RadzenDataGrid>
         </RadzenTabsItem>
 
         <RadzenTabsItem Text="Projects" Style="color: #46d444">
-            <RadzenDataGrid Data="@projects" TItem="Project"
+            <RadzenDataGrid Data="@projects" TItem="ProjectDto"
                             AllowPaging="true" PageSize="5">
                 <Columns>
-                    <RadzenDataGridColumn TItem="Project" Property="Id" Title="ID" Width="80px" />
-                    <RadzenDataGridColumn TItem="Project" Property="Name" Title="Name" />
-                    <RadzenDataGridColumn TItem="Project" Property="DateRange" Title="Date Range" />
-                    <RadzenDataGridColumn TItem="Project" Property="IsActive" Title="Status" />
+                    <RadzenDataGridColumn TItem="ProjectDto" Property="ID" Title="ID" Width="80px" />
+                    <RadzenDataGridColumn TItem="ProjectDto" Property="Name" Title="Name" />
+                    <RadzenDataGridColumn TItem="ProjectDto" Property="MinDate" Title="Date Range Start" />
+                    <RadzenDataGridColumn TItem="ProjectDto" Property="MaxDate" Title="Date Range End" />
+                    <RadzenDataGridColumn TItem="ProjectDto" Property="IsActive" Title="Active" />
                 </Columns>
             </RadzenDataGrid>
         </RadzenTabsItem>
@@ -51,14 +53,14 @@ else
 @code {
     [Parameter] public int Id { get; set; }
 
-    private Company? selectedCompany;
-    private List<Subcompany> subcompanies = new();
-    private List<Project> projects = new();
+    private CompanyDto? selectedCompany;
+    private List<CompanyDto> subcompanies = new();
+    private List<ProjectDto> projects = new();
 
     protected override async Task OnInitializedAsync()
     {
         selectedCompany = await CompanyService.GetCompanyByIdAsync(Id);
-        subcompanies = await CompanyService.GetSubcompaniesForCompanyAsync(Id);
-        projects = await CompanyService.GetProjectsForCompanyAsync(Id);
+        subcompanies = await CompanyService.GetSubcompaniesForCompanyAsync(Id, CancellationToken.None);
+        projects = await CompanyService.GetProjectsForCompanyAsync(Id, CancellationToken.None);
     }
 }

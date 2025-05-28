@@ -3,15 +3,24 @@
   <PropertyGroup>
     <NoWarn>CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
     <NuGetAuditMode>direct</NuGetAuditMode>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Configurations>Debug;Release;DebugNoFabric</Configurations>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="7.0.1816" />
     <PackageReference Include="Radzen.Blazor" Version="7.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Calculus cloud\Eywa.HealthMonitor.Contracts\Eywa.HealthMonitor.Contracts.csproj" />
   </ItemGroup>
 </Project>

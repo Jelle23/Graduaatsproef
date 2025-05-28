@@ -1,37 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Graduaatsproef\\Graduaatsproef.csproj": {}
+    "C:\\Projecten\\Calculus\\Calculus Panopticon\\Graduaatsproef\\Graduaatsproef.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Graduaatsproef\\Graduaatsproef.csproj": {
+    "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Graduaatsproef\\Graduaatsproef.csproj",
-        "projectName": "Graduaatsproef",
-        "projectPath": "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Graduaatsproef\\Graduaatsproef.csproj",
-        "packagesPath": "C:\\Users\\vdbje\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Graduaatsproef\\obj\\",
+        "projectUniqueName": "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj",
+        "projectName": "Eywa.HealthMonitor.Contracts",
+        "projectPath": "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj",
+        "packagesPath": "C:\\Users\\geertp\\.nuget\\packages\\",
+        "outputPath": "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\vdbje\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\geertp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -44,13 +47,94 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.ServiceFabric.Services.Remoting": {
+              "target": "Package",
+              "version": "[7.0.1816, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projecten\\Calculus\\Calculus Panopticon\\Graduaatsproef\\Graduaatsproef.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projecten\\Calculus\\Calculus Panopticon\\Graduaatsproef\\Graduaatsproef.csproj",
+        "projectName": "Graduaatsproef",
+        "projectPath": "C:\\Projecten\\Calculus\\Calculus Panopticon\\Graduaatsproef\\Graduaatsproef.csproj",
+        "packagesPath": "C:\\Users\\geertp\\.nuget\\packages\\",
+        "outputPath": "C:\\Projecten\\Calculus\\Calculus Panopticon\\Graduaatsproef\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\geertp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj": {
+                "projectPath": "C:\\Projecten\\Calculus\\Calculus cloud\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.ServiceFabric.AspNetCore.Kestrel": {
+              "target": "Package",
+              "version": "[7.0.1816, )"
+            },
             "Radzen.Blazor": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -75,7 +159,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

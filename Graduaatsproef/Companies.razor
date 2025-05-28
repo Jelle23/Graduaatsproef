@@ -1,4 +1,5 @@
 @page "/companies"
+@using Eywa.HealthMonitor.Contracts.Dtos
 @using Radzen
 @using Radzen.Blazor
 @inject CompanyService companyService
@@ -19,24 +20,24 @@ else
                     Style="cursor: pointer;"
                     AllowSorting="true">
         <Columns>
-            <RadzenDataGridColumn TItem="Company" Property="Id" Title="ID" Width="80px" />
-            <RadzenDataGridColumn TItem="Company" Property="Naam" Title="Naam" />
-            <RadzenDataGridColumn TItem="Company" Property="AantalSubcompanies" Title="Aantal Subcompanies" />
+            <RadzenDataGridColumn TItem="CompanyDto" Property="ID" Title="ID" Width="80px" />
+            <RadzenDataGridColumn TItem="CompanyDto" Property="Name" Title="Naam" />
+            <RadzenDataGridColumn TItem="CompanyDto" Property="NumberOfSubCompanies" Title="Aantal Subcompanies" />
         </Columns>
     </RadzenDataGrid>
 }
 
 @code {
-    private List<Company> companies;
+    private List<CompanyDto> companies;
 
     protected override async Task OnInitializedAsync()
     {
         // Fetch companies from the injected service
-        companies = await companyService.GetCompaniesAsync();
+        companies = await companyService.GetCompaniesAsync(CancellationToken.None);
     }
 
-    void OnRowSelect(Company company)
+    void OnRowSelect(CompanyDto company)
     {
-        NavigationManager.NavigateTo($"/companies/{company.Id}");
+        NavigationManager.NavigateTo($"/companies/{company.ID}");
     }
 }
