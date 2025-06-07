@@ -3,7 +3,7 @@
 @using Radzen
 @using Radzen.Blazor
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0 10px 0; color: #46d444;">
     Gateway Types
 </h1>
 
@@ -22,7 +22,7 @@ else
 
         <Columns>
             <RadzenDataGridColumn TItem="GatewayType" Property="Id" Title="ID" Width="50px" />
-            <RadzenDataGridColumn TItem="GatewayType" Property="Naam" Title="Naam" />
+            <RadzenDataGridColumn TItem="GatewayType" Property="Name" Title="Name" />
             <RadzenDataGridColumn TItem="GatewayType" Property="AantalGateways" Title="Aantal gateways" />
         </Columns>
     </RadzenDataGrid>
@@ -33,7 +33,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        gatewayTypes = await GatewayTypeService.GetGatewayTypesAsync();
+            gatewayTypes = (await GatewayTypeService.GetGatewayTypesAsync())
+            .OrderBy(gt => gt.Name)
+            .ToList();
     }
 
     private void OnRowSelect(GatewayType selected)

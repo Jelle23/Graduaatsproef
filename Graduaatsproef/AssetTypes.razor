@@ -3,7 +3,7 @@
 @using Radzen
 @using Radzen.Blazor
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0 10px 0; color: #46d444;">
     Asset Types
 </h1>
 
@@ -22,7 +22,7 @@ else
 
         <Columns>
             <RadzenDataGridColumn TItem="AssetType" Property="Id" Title="ID" Width="100px" />
-            <RadzenDataGridColumn TItem="AssetType" Property="Naam" Title="Naam" />
+            <RadzenDataGridColumn TItem="AssetType" Property="Name" Title="Name" />
             <RadzenDataGridColumn TItem="AssetType" Property="AantalAssets" Title="Aantal assets" />
         </Columns>
     </RadzenDataGrid>
@@ -33,7 +33,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        assetTypes = await AssetTypeService.GetAssetTypesAsync();
+        assetTypes = (await AssetTypeService.GetAssetTypesAsync())
+        .OrderBy(a => a.Name)
+        .ToList();
     }
 
     private void OnRowSelect(AssetType type)

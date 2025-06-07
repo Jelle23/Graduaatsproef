@@ -3,8 +3,7 @@
 @using Radzen
 @using Radzen.Blazor
 @inject CompanyService companyService
-
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0 10px 0; color: #46d444;">
     Companies
 </h1>
 
@@ -14,13 +13,13 @@
 }
 else
 {
-    <RadzenDataGrid Data="@companies" TItem="Company"
-                    AllowPaging="true" PageSize="10"
+    <RadzenDataGrid Data="@companies" TItem="CompanyDto"
+                    AllowPaging="true" PageSize="20"
                     RowSelect="OnRowSelect"
                     Style="cursor: pointer;"
                     AllowSorting="true">
         <Columns>
-            <RadzenDataGridColumn TItem="CompanyDto" Property="ID" Title="ID" Width="80px" />
+            <RadzenDataGridColumn TItem="CompanyDto" Property="ID" Title="ID" Width="150px" />
             <RadzenDataGridColumn TItem="CompanyDto" Property="Name" Title="Naam" />
             <RadzenDataGridColumn TItem="CompanyDto" Property="NumberOfSubCompanies" Title="Aantal Subcompanies" />
         </Columns>
@@ -33,7 +32,9 @@ else
     protected override async Task OnInitializedAsync()
     {
         // Fetch companies from the injected service
-        companies = await companyService.GetCompaniesAsync(CancellationToken.None);
+        companies = (await companyService.GetCompaniesAsync(CancellationToken.None))
+        .OrderBy(c => c.Name)
+        .ToList();
     }
 
     void OnRowSelect(CompanyDto company)

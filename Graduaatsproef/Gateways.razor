@@ -4,29 +4,35 @@
 @using Radzen.Blazor
 @inject GatewaysService GatewaysService
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0; color: #46d444;">
     Gateways
 </h1>
+@if (allGateways == null)
+{
+    <p style="margin: 40px 0"><em>Loading...</em></p>
+}
+else
+{
 
-<RadzenTabs>
-    <Tabs>
-        <!-- Tab 1: Google Map -->
-        <RadzenTabsItem Text="Map" Style="color: #46d444">
-            <RadzenGoogleMap Zoom="12"
-                             MapId="15b04a333dd20cd2"
-                             Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
-                             Style="height:400px; width: 100%;">
-                <Markers>
-                    @foreach (var gateway in filteredGateways)
-                    {
-                        <RadzenGoogleMapMarker Title=@gateway.Name Position=@(new GoogleMapPosition() { Lat=gateway.Latitude, Lng=gateway.Longitude }) />
-                    }
-                </Markers>
+    <RadzenTabs>
+        <Tabs>
+            <!-- Tab 1: Google Map -->
+            <RadzenTabsItem Text="Map" Style="color: #46d444; margin: 40px 0 15px 0;">
+                <RadzenGoogleMap Zoom="12"
+                MapId="15b04a333dd20cd2"
+                Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
+                Style="height:400px; width: 100%;">
+                    <Markers>
+                        @foreach (var gateway in filteredGateways)
+                        {
+                            <RadzenGoogleMapMarker Title=@gateway.Name Position=@(new GoogleMapPosition() { Lat=gateway.Latitude, Lng=gateway.Longitude }) />
+                        }
+                    </Markers>
             </RadzenGoogleMap>
         </RadzenTabsItem>
 
         <!-- Tab 2: Gateway List -->
-        <RadzenTabsItem Text="List" Style="color: #46d444">
+        <RadzenTabsItem Text="List" Style="color: #46d444; margin: 40px 0 15px 0;">
             <div class="mb-3">
                 <!-- Search bar -->
                 <RadzenTextBox @bind-Value="searchText"
@@ -53,52 +59,52 @@
             <!-- DataGrid -->
             <RadzenDataGrid @ref="grid" Data="@filteredGateways" TItem="GatewayDto"
                             Editable="true" EditMode="DataGridEditMode.Single"
-                            AllowPaging="true" PageSize="8" AllowFiltering="false" AllowSorting="true">
+                            AllowPaging="true" PageSize="20" AllowFiltering="false" AllowSorting="true">
                 <Columns>
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="ID" Title="ID" Width="50px" />
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="ID" Title="ID" Width="75px" />
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="Name" Title="Name">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="Name" Title="Name" Width="200px">
                         <EditTemplate Context="gateway">
-                            <RadzenTextBox @bind-Value="gateway.Name" Style="width:100%" />
+                            <RadzenTextBox @bind-Value="gateway.Name"/>
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="SerialNumber" Title="Serienummer">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="SerialNumber" Title="Serienummer" Width="220px">
                         <EditTemplate Context="gateway">
-                            <RadzenNumeric @bind-Value="gateway.SerialNumber" TValue="string" Style="width:100%" />
+                            <RadzenNumeric @bind-Value="gateway.SerialNumber" TValue="string"/>
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="GatewayKindName" Title="Gateway Kind">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="GatewayKindName" Title="Gateway Kind" Width="160px;">
                         <EditTemplate Context="gateway">
-                            <RadzenTextBox @bind-Value="gateway.GatewayKindName" Style="width:100%" />
+                            <RadzenTextBox @bind-Value="gateway.GatewayKindName"/>
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="OwnerCompanyName" Title="Owner Company">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="OwnerCompanyName" Title="Owner Company" Width="150px;">
                         <EditTemplate Context="gateway">
-                            <RadzenTextBox @bind-Value="gateway.OwnerCompanyName" Style="width:100%" />
+                            <RadzenTextBox @bind-Value="gateway.OwnerCompanyName"/>
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="GatewayTypeName" Title="Gateway Type">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="GatewayTypeName" Title="Gateway Type" Width="150px;">
                         <EditTemplate Context="gateway">
-                            <RadzenTextBox @bind-Value="gateway.GatewayTypeName" Style="width:100%" />
+                            <RadzenTextBox @bind-Value="gateway.GatewayTypeName"/>
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="HasTunnelConnection" Title="Tunnel Connection">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="HasTunnelConnection" Title="Tunnel Connection" Width="200px;">
                         <EditTemplate Context="gateway">
-                            <RadzenCheckBox @bind-Value="gateway.IsActive" Style="margin-top: 10px;" />
+                            <RadzenCheckBox @bind-Value="gateway.IsActive"/>
                         </EditTemplate>
                         <Template Context="gateway">
                             @(gateway.HasTunnelConnection ? "Connected" : "Not connected")
                         </Template>
                     </RadzenDataGridColumn>
 
-                    <RadzenDataGridColumn TItem="GatewayDto" Property="IsActive" Title="Status">
+                    <RadzenDataGridColumn TItem="GatewayDto" Property="IsActive" Title="Status" Width="200px;">
                         <EditTemplate Context="gateway">
-                            <RadzenCheckBox @bind-Value="gateway.IsActive" Style="margin-top: 10px;" />
+                            <RadzenCheckBox @bind-Value="gateway.IsActive"/>
                         </EditTemplate>
                         <Template Context="gateway">
                             @(gateway.IsActive ? "Active" : "Inactive")
@@ -109,10 +115,11 @@
         </RadzenTabsItem>
     </Tabs>
 </RadzenTabs>
+}
 
 @code {
     private RadzenDataGrid<GatewayDto> grid;
-    private List<GatewayDto> allGateways = new();
+    private List<GatewayDto>? allGateways;
     private List<GatewayDto> filteredGateways = new();
     private string searchText = string.Empty;
     private bool showActiveOnly = false;
@@ -125,7 +132,7 @@
     protected override async Task OnInitializedAsync()
     {
         allGateways = await GatewaysService.GetGatewaysAsync(CancellationToken.None);
-        gatewayKinds = allGateways.Select(g => g.GatewayKindName).Distinct().ToList();
+        gatewayKinds = allGateways.Select(g => g.GatewayKindName).Distinct().OrderBy(g => g).ToList();
         ApplyFilters();
     }
 
@@ -142,6 +149,7 @@
                 (!showActiveOnly || g.IsActive) &&
                 (string.IsNullOrEmpty(selectedGatewayKind) || g.GatewayKindName == selectedGatewayKind)
             )
+            .OrderBy(a => a.Name)
             .ToList();
     }
 

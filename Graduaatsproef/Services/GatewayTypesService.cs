@@ -6,9 +6,9 @@ public class GatewayTypeService
 {
     private readonly List<GatewayType> gatewayTypes = new()
     {
-        new GatewayType { Id = 1, Naam = "LoRa Gateway", AantalGateways = 2 },
-        new GatewayType { Id = 2, Naam = "WiFi Gateway", AantalGateways = 1 },
-        new GatewayType { Id = 3, Naam = "5G Gateway", AantalGateways = 1 }
+        new GatewayType { Id = 1, Name = "LoRa Gateway", AantalGateways = 2 },
+        new GatewayType { Id = 2, Name = "WiFi Gateway", AantalGateways = 1 },
+        new GatewayType { Id = 3, Name = "5G Gateway", AantalGateways = 1 }
     };
 
     private readonly Dictionary<int, List<Gateway>> gatewaysByType = new()
@@ -52,7 +52,7 @@ public class GatewayTypeService
 public class GatewayType
 {
     public int Id { get; set; }
-    public string Naam { get; set; }
+    public string Name { get; set; }
     public int AantalGateways { get; set; }
 }
 

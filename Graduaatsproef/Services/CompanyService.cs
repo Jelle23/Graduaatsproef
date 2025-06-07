@@ -10,7 +10,21 @@ public class CompanyService
         new CompanyDto { ID = 3, Name = "Globex", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" },
         new CompanyDto { ID = 4, Name = "VDB Service", NumberOfSubCompanies = 0, ParentCompanyID = 2, ParentCompanyName = "Fabrikam" },
         new CompanyDto { ID = 5, Name = "Dutry Power", NumberOfSubCompanies = 0, ParentCompanyID = 1, ParentCompanyName = "Contoso" },
-        new CompanyDto { ID = 6, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 }
+        new CompanyDto { ID = 6, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 7, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 8, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 9, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 10, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 11, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 12, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 13, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 14, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 15, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 16, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 17, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 18, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 19, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
+        new CompanyDto { ID = 20, Name = "Koninklijke Van Twist", NumberOfSubCompanies = 0 },
     };
 
     private Dictionary<int, List<CompanyDto>> subcompanyData = new()

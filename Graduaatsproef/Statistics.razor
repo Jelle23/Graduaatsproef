@@ -3,9 +3,16 @@
 @using Radzen.Blazor
 @inject StatisticsService StatisticsService
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0 10px 0; color: #46d444;">
     Statistics
 </h1>
+
+@if (statistics == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 
 <RadzenRow>
     @foreach (var stat in statistics)
@@ -19,9 +26,10 @@
             </RadzenColumn>
     }
 </RadzenRow>
+}
 
 @code {
-    private List<StatisticsService.Statistic> statistics = new();
+    private List<StatisticsService.Statistic>? statistics;
 
     protected override async Task OnInitializedAsync()
     {

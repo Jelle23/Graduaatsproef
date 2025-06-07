@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "zFTwAEse9rA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vdbje\\OneDrive\\Documenten\\School\\Jelle Vandebroek\\Blazor\\Graduaatsproef\\Eywa.HealthMonitor.Contracts\\Eywa.HealthMonitor.Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric\\10.0.1816\\microsoft.servicefabric.10.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.data\\7.0.1816\\microsoft.servicefabric.data.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.data.extensions\\7.0.1816\\microsoft.servicefabric.data.extensions.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.data.interfaces\\7.0.1816\\microsoft.servicefabric.data.interfaces.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.diagnostics.internal\\7.0.1816\\microsoft.servicefabric.diagnostics.internal.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.fabrictransport.internal\\7.0.1816\\microsoft.servicefabric.fabrictransport.internal.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.services\\7.0.1816\\microsoft.servicefabric.services.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\microsoft.servicefabric.services.remoting\\7.0.1816\\microsoft.servicefabric.services.remoting.7.0.1816.nupkg.sha512",
+    "C:\\Users\\vdbje\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

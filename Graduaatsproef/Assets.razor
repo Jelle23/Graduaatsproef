@@ -3,29 +3,34 @@
 @using Radzen.Blazor
 @inject AssetsService AssetsService
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0; color: #46d444;">
     Assets
 </h1>
-
-<RadzenTabs>
-    <Tabs>
-        <!-- Tab 1: Google Map -->
-        <RadzenTabsItem Text="Map" Style="color: #46d444">
-            <RadzenGoogleMap Zoom="12"
-                             MapId="15b04a333dd20cd2"
-                             Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
-                             Style="height:400px; width: 100%;">
-                <Markers>
-                    @foreach (var asset in filteredAssets)
-                    {
-                        <RadzenGoogleMapMarker Title=@asset.Name Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
-                    }
-                </Markers>
+@if (allAssets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenTabs>
+        <Tabs>
+            <!-- Tab 1: Google Map -->
+            <RadzenTabsItem Text="Map" Style="color: #46d444; margin: 40px 0 15px 0;">
+                <RadzenGoogleMap Zoom="12"
+                MapId="15b04a333dd20cd2"
+                Center=@(new GoogleMapPosition() { Lat=mapCenterLatitude, Lng=mapCenterLongitude })
+                Style="height:400px; width: 100%;">
+                    <Markers>
+                        @foreach (var asset in filteredAssets)
+                        {
+                            <RadzenGoogleMapMarker Title=@asset.Name Position=@(new GoogleMapPosition() { Lat=asset.Latitude, Lng=asset.Longitude }) />
+                        }
+                    </Markers>
             </RadzenGoogleMap>
         </RadzenTabsItem>
 
         <!-- Tab 2: Asset List -->
-        <RadzenTabsItem Text="List" Style="color: #46d444">
+        <RadzenTabsItem Text="List" Style="color: #46d444; margin: 40px 0 15px 0;">
             <div class="mb-3">
                 <!-- Search bar -->
                 <RadzenTextBox @bind-Value="searchText"
@@ -50,13 +55,13 @@
             <!-- DataGrid -->
             <RadzenDataGrid @ref="grid" Data="@filteredAssets" TItem="AssetsService.Asset"
                             Editable="true" EditMode="DataGridEditMode.Single"
-                            AllowPaging="true" PageSize="5" AllowFiltering="false" AllowSorting="true">
+                            AllowPaging="true" PageSize="20" AllowFiltering="false" AllowSorting="true">
                 <Columns>
-                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="Id" Title="ID" Width="50px" />
+                    <RadzenDataGridColumn TItem="AssetsService.Asset" Property="Id" Title="ID" Width="60px" />
 
                     <RadzenDataGridColumn TItem="AssetsService.Asset" Property="Name" Title="Name">
                         <EditTemplate Context="asset">
-                            <RadzenTextBox @bind-Value="asset.Name" Style="width:100%" />
+                            <RadzenTextBox @bind-Value="asset.Name" Style="width: 400px;" />
                         </EditTemplate>
                     </RadzenDataGridColumn>
 
@@ -94,10 +99,11 @@
         </RadzenTabsItem>
     </Tabs>
 </RadzenTabs>
+}
 
 @code {
     private RadzenDataGrid<AssetsService.Asset> grid;
-    private List<AssetsService.Asset> allAssets = new();
+    private List<AssetsService.Asset>? allAssets;
     private List<AssetsService.Asset> filteredAssets = new();
     private string searchText = string.Empty;
     private bool showOnlineOnly = false;
@@ -123,6 +129,7 @@
                 (!showOnlineOnly || a.IsOnline) &&
                 (!showActiveOnly || a.IsActive)
             )
+            .OrderBy(a => a.Name)
             .ToList();
     }
 

@@ -3,9 +3,16 @@
 @using Radzen.Blazor
 @inject HealthDashboardService HealthDashboardService
 
-<h1 style="font-size: 24px; font-weight: 600; margin: 0 0 1rem 0; color: #46d444;">
+<h1 style="font-size: 24px; font-weight: 600; margin: -40px 0 10px 0; color: #46d444;">
     Health Dashboard
 </h1>
+
+@if (services == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 
 <RadzenDataGrid Data="@services" TItem="HealthDashboardService.HealthDashboard"
                 AllowPaging="false" AllowFiltering="false" AllowSorting="false">
@@ -21,13 +28,16 @@
         <RadzenDataGridColumn TItem="HealthDashboardService.HealthDashboard" Property="Details" Title="Details" />
     </Columns>
 </RadzenDataGrid>
+}
 
 @code {
-    private List<HealthDashboardService.HealthDashboard> services = new();
+    private List<HealthDashboardService.HealthDashboard>? services;
 
     protected override async Task OnInitializedAsync()
     {
-        services = await HealthDashboardService.GetHealthDashboardsAsync();
+        services = (await HealthDashboardService.GetHealthDashboardsAsync())
+        .OrderBy(s => s.Service)
+        .ToList();
     }
 
     private string GetStatusColor(string status) => status switch

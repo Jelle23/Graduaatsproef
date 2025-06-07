@@ -1,0 +1,13 @@
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\bin\Debug\net8.0\Eywa.HealthMonitor.Contracts.deps.json
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\bin\Debug\net8.0\Eywa.HealthMonitor.Contracts.dll
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\bin\Debug\net8.0\Eywa.HealthMonitor.Contracts.pdb
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.csproj.AssemblyReference.cache
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.AssemblyInfoInputs.cache
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.AssemblyInfo.cs
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.sourcelink.json
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.dll
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\refint\Eywa.HealthMonitor.Contracts.dll
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\Eywa.HealthMonitor.Contracts.pdb
+C:\Users\vdbje\OneDrive\Documenten\School\Jelle Vandebroek\Blazor\Graduaatsproef\Eywa.HealthMonitor.Contracts\obj\Debug\net8.0\ref\Eywa.HealthMonitor.Contracts.dll

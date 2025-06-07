@@ -6,9 +6,9 @@ public class AssetTypeService
 {
     private readonly List<AssetType> assetTypes = new()
     {
-        new AssetType { Id = 1, Naam = "Temperature Sensor", AantalAssets = 2 },
-        new AssetType { Id = 2, Naam = "Security Camera", AantalAssets = 1 },
-        new AssetType { Id = 3, Naam = "Smart Light", AantalAssets = 1 }
+        new AssetType { Id = 1, Name = "Temperature Sensor", AantalAssets = 2 },
+        new AssetType { Id = 2, Name = "Security Camera", AantalAssets = 1 },
+        new AssetType { Id = 3, Name = "Smart Light", AantalAssets = 1 }
     };
 
     private readonly Dictionary<int, List<Asset>> assetsByType = new()
@@ -52,7 +52,7 @@ public class AssetTypeService
 public class AssetType
 {
     public int Id { get; set; }
-    public string Naam { get; set; }
+    public string Name { get; set; }
     public int AantalAssets { get; set; }
 }
 
